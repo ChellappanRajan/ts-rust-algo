@@ -88,6 +88,9 @@ To improve this, you can create a `SinglyLinkedList` class and move adding node 
 ## Rust Example
 
 In rust you can define a node using a struct:
+- In Rust, Option is similar to null or a value of type T.
+- To allow multiple values to point to a single variable, Rust uses a reference counter (Rc) wrapped inside an Option.
+
 
 ```rust 
 struct Node<T>{
@@ -112,11 +115,33 @@ Here's an example:
    node.next = Some(Rc::new(new_node));
    print!("{}",node.next.unwrap().value);
 ```
-- In Rust, Option is similar to null or a value of type T.
-- To allow multiple values to point to a single variable, Rust uses a reference counter (Rc) wrapped inside an Option.
 
+You can also define methods for the Node struct using the `impl` block:
 
 ```rust
-
-
+impl<T> Node<T> {
+    // This `impl` block defines the methods for the `Node` struct.
+    fn new(value:T)->Self{
+        // This `fn` method constructs a new `Node` instance.
+      Self{
+         // This `Self` struct literal initializes the `value` and `next` fields.
+         value,
+         next: None
+      }
+    }
+}
 ```
+The `new()` method constructs a new `Node` instance and initializes the value and next fields.
+
+Refactored version of the above code:
+
+```rust
+   let mut node = Node::new(10);
+   let  new_node = Node::new(20);
+   node.next = Some(Rc::new(new_node));
+   print!("{}",node.next.unwrap().value);
+```
+
+
+
+
