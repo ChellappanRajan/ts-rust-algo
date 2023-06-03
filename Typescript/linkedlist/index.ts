@@ -6,6 +6,20 @@ class LNode<T>{
     }
 }
 
-const node = new LNode(10);
-const new_node = new LNode(20);
-node.next.node = new_node;
+class SinglyLinkedList{
+    head:null | LNode<any> = null;
+    tail:null | LNode<any>  = null;
+    length = 0;
+
+    push(value){
+     const newNode = new LNode(value);
+     if(!this.head){
+        this.head = newNode;
+     }
+     if(!this.tail){
+        this.tail = newNode
+     }
+     this.length = this.length +1;
+    }
+}
+
