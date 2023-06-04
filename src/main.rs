@@ -1,27 +1,27 @@
 use std::rc::Rc;
 
-struct Node<T>{
-   value:T,
-   next:Option<Rc<Node<T>>>
-}
+use algo_and_ds::linkedlist::linked_list::{Node, SingleLinkedList};
 
-impl<T> Node<T> {
-    fn new(value:T)->Self{
-      Self{
-         value,
-         next: None
-      }
-    }
-}
 
 fn main() {
-   let mut node = Node::new(10);
+   // let mut node = Node::new(10);
 
-   let mut new_node = Node::new(10);
-   // let  new_node = Node{
-   //    value:20,
-   //    next:None
-   // };
-   node.next = Some(Rc::new(new_node));
-   print!("{}",node.next.unwrap().value);
+   // let mut new_node = Node::new(20);
+   // // let  new_node = Node{
+   // //    value:20,
+   // //    next:None
+   // // };
+   // node.next = Some(Rc::new(new_node));
+   // print!("{}",node.next.unwrap().value);
+
+
+   let mut list = SingleLinkedList::new();
+   list.push(10);
+   list.push(20);
+   list.push(30);
+   
+
+   // let v = &list.head.as_ref().unwrap().as_ref().next.as_ref().unwrap().value;
+   print!("{}",v);
+   
 }

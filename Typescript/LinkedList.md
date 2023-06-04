@@ -50,13 +50,13 @@ However this approach becomes difficult when adding more nodes,as you would need
 To improve this, you can create a `SinglyLinkedList` class and move adding node logic to it.    
 
 ```javascript
-    class SinglyLinkedList{
-       constructor(){
-         this.head =null;
-         this.tail = null;
-         this.length = 0;
-       }
-    }
+class SinglyLinkedList{
+      constructor(){
+        this.head =null;
+        this.tail = null;
+        this.length = 0;
+      }
+}
 
     const list = new SinglyLinkedList();
 ```
@@ -65,7 +65,7 @@ To improve this, you can create a `SinglyLinkedList` class and move adding node 
  Now let's implement push method to add nodes:
 
  ```javascript
-     push(value){
+push(value){
        const new_node = {
         value, 
         next:null
@@ -76,10 +76,10 @@ To improve this, you can create a `SinglyLinkedList` class and move adding node 
        }else{
         this.tail.next = new_node;
        }
-     }
+}
 
-    list.push("Helo");
-    list.push("World");
+list.push("Helo");
+list.push("World");
  ```
  Everytime when we call `push` we create a `new_node` with the value we passed.If there is no head value, we set the `new_node` as the head and tail and     then increment the length by one.If there is already value then we create a `new_node` then assign it to tail node.
 
@@ -104,16 +104,16 @@ To modify the data in rust, you need to use `mut` for mutable variables.
 Here's an example:
 
 ```rust
-  let mut node = Node{
+let mut node = Node{
       value:10,
       next:None
-   };
-   let  new_node = Node{
+};
+let  new_node = Node{
       value:20,
       next:None
-   };
-   node.next = Some(Rc::new(new_node));
-   print!("{}",node.next.unwrap().value);
+};
+node.next = Some(Rc::new(new_node));
+print!("{}",node.next.unwrap().value);
 ```
 
 You can also define methods for the Node struct using the `impl` block:
@@ -142,6 +142,34 @@ Refactored version of the above code:
    print!("{}",node.next.unwrap().value);
 ```
 
+Now let's create `SingleLinkedList` struct and implement push method to add nodes
+
+```rust
+pub struct SingleLinkedList<T> {
+    pub head:Option<Rc<Node<T>>>,
+    pub tail:Option<Rc<Node<T>>>,
+    pub length:usize
+}
+
+impl<T> SingleLinkedList<T> {
+    pub fn new()->Self{
+      Self { head: None, tail: None, length: 0 }
+   }
+
+   pub fn push(&mut self,value: T){
+      let new_node = Node::new(value); //Create new node with given value
+      
+      //pattern matching to check if there is already head defined or not
+      if let Some(_) = &self.head{
+        self.tail.next = new_node;
+      }else{
+         self.head = Some(Rc::new(new_node));
+         self.tail = self.head.clone();
+      }
+   }
+}
+
+```
 
 
 

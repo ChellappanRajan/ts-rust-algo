@@ -13,13 +13,16 @@ class SinglyLinkedList{
 
     push(value){
      const newNode = new LNode(value);
-     if(!this.head){
+     if(!this.head || !this.tail){
         this.head = newNode;
+        this.tail = newNode;
      }
-     if(!this.tail){
-        this.tail = newNode
+     else{
+        this.tail.next = newNode;
+        this.tail = newNode;
      }
-     this.length = this.length +1;
+     this.length++;
+     return this;
     }
 }
 
