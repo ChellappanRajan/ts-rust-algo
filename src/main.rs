@@ -18,10 +18,11 @@ fn main() {
    let mut list = SingleLinkedList::new();
    list.push(10);
    list.push(20);
-   list.push(30);
-   
+   list.push(20);
+   list.push(20);
 
-   // let v = &list.head.as_ref().unwrap().as_ref().next.as_ref().unwrap().value;
-   print!("{}",v);
+   
+   print!("Length: {:?}",list.length);
    
 }
+

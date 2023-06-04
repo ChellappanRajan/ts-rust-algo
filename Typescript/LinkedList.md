@@ -147,28 +147,32 @@ Now let's create `SingleLinkedList` struct and implement push method to add node
 ```rust
 pub struct SingleLinkedList<T> {
     pub head:Option<Rc<Node<T>>>,
-    pub tail:Option<Rc<Node<T>>>,
     pub length:usize
 }
 
 impl<T> SingleLinkedList<T> {
     pub fn new()->Self{
-      Self { head: None, tail: None, length: 0 }
+      Self { head: None, length: 0 }
    }
 
-   pub fn push(&mut self,value: T){
-      let new_node = Node::new(value); //Create new node with given value
-      
-      //pattern matching to check if there is already head defined or not
-      if let Some(_) = &self.head{
-        self.tail.next = new_node;
-      }else{
-         self.head = Some(Rc::new(new_node));
-         self.tail = self.head.clone();
-      }
+   pub fn push(&mut self, value: T) {
+      match self.head.take(){
+         None=>{
+            let new_node = Rc::new(Node::new(value));
+            self.head = Some(new_node);
+            self.length = self.length + 1;
+         },
+         Some(node)=>{
+            let new_node =Rc::new( Node{
+               value,
+               next:Some(node)
+            });
+            self.head = Some(new_node);
+            self.length = self.length + 1;
+         }
+         
    }
 }
-
 ```
 
 
