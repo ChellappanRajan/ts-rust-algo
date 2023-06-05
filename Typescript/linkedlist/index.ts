@@ -1,18 +1,18 @@
-class LNode<T>{
+class SingleNode<T>{
     value:T;
-    next:LNode<T> | null;
+    next:SingleNode<T> | null=null;
     constructor(value){
         this.value =value;
     }
 }
 
-class SinglyLinkedList{
-    head:null | LNode<any> = null;
-    tail:null | LNode<any>  = null;
+class SingleLinkedList{
+    head:null | SingleNode<any> = null;
+    tail:null | SingleNode<any>  = null;
     length = 0;
 
     push(value){
-     const newNode = new LNode(value);
+     const newNode = new SingleNode(value);
      if(!this.head || !this.tail){
         this.head = newNode;
         this.tail = newNode;
@@ -25,4 +25,13 @@ class SinglyLinkedList{
      return this;
     }
 }
+
+const single = new SingleLinkedList();
+
+single.push(1);
+single.push(2);
+single.push(3);
+single.push(4);
+single.push(5);
+console.log(JSON.stringify(single,null));
 

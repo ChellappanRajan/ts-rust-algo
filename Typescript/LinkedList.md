@@ -22,9 +22,9 @@ const node = {
 Alternatively, you can define a node class in TypeScript like this:
 
 ```typescript
-class LNode<T>{
+class SingleNode<T>{
     value:T;
-    next:LNode<T> | null;
+    next:SingleNode<T> | null;
     constructor(value){
         this.value =value;
     }
