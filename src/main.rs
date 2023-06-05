@@ -20,6 +20,7 @@ fn main() {
    list.push(20);
    list.push(20);
    list.push(20);
+   list.pop();
 
    
    print!("Length: {:?}",list.length);
