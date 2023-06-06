@@ -24,6 +24,13 @@ class SingleLinkedList{
      this.length++;
      return this;
     }
+    get(index:number):number{
+        let temp = this.head!;
+        for(let i =1;i<index;i++){
+            temp = temp?.next!;
+        }
+        return temp.value;
+    }       
 }
 
 const single = new SingleLinkedList();
